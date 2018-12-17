@@ -32,8 +32,8 @@
   <meta name="apple-mobile-web-app-status-bar-style" content="black">
   
   
-<link rel="prev" href="index.html">
-<link rel="next" href="equations.html">
+<link rel="prev" href="intro.html">
+<link rel="next" href="code-chunks.html">
 <script src="libs/jquery-2.2.3/jquery.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
 <link href="libs/gitbook-2.6.7/css/plugin-bookdown.css" rel="stylesheet" />
@@ -162,118 +162,56 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="intro" class="section level1">
-<h1><span class="header-section-number">Chapter 2</span> Introduction: Text features</h1>
-<div id="text" class="section level2">
-<h2><span class="header-section-number">2.1</span> Text</h2>
-<p>The markdown syntax is very simple and this is one of the reasons why it is so attractive. You can find all the syntax with <a href="https://www.rstudio.com/wp-content/uploads/2015/03/rmarkdown-reference.pdf">this R Markdown reference document</a>, but I thought I would go through them as I have learned several tricks I could not easily find in the document.</p>
+<div id="equations" class="section level1">
+<h1><span class="header-section-number">Chapter 3</span> Equations</h1>
+<div id="editing-equations-in-r-markdown" class="section level2">
+<h2><span class="header-section-number">3.1</span> Editing equations in R Markdown</h2>
+<p>We do not write nearly as much math in our field than our colleagues in statistics or math. But we do enough to have a bit of a tutorial. I have borrowed this entire section from the <a href="http://www.stat.cmu.edu/~cshalizi/rmarkdown/#math-in-r-markdown">excellent tutorial from Dr Shalizi</a> again. R Markdown gives you the syntax to render complex mathematical formulas and derivations, and have them displayed very nicely. Like code, the math can either be inline or set off (displays).</p>
 <p><br/></p>
-<div id="paragraph-breaks-and-forced-line-breaks" class="section level3">
-<h3><span class="header-section-number">2.1.1</span> Paragraph Breaks and Forced Line Breaks</h3>
-<p>To insert a break between paragraphs, include a single completely blank line.</p>
-<p>To force a line break, put <em>two</em> blank spaces at the end of a line.</p>
-<pre><code>To insert a break between paragraphs, include a single completely blank line.
+<div id="inline-equations" class="section level3">
+<h3><span class="header-section-number">3.1.1</span> Inline equations</h3>
+<p>Inline math is marked off witha pair of dollar signs (<code>$</code>), as <span class="math inline">\(\pi r^2\)</span> or <span class="math inline">\(e^{i\pi}\)</span>.</p>
+<pre><code>Inline math is marked off witha pair of dollar
+signs (`$`), as $\pi r^2$ or $e^{i\pi}$.</code></pre>
+<p><br/></p>
+</div>
+<div id="set-off-equations" class="section level3">
+<h3><span class="header-section-number">3.1.2</span> Set off equations</h3>
+<p>In the <a href="https://francoisbirgand.github.io/tutorial-RMarkdown_instructions.html">R markdown tutorial</a> I have other instructions about equations that are really related to R markdown. I now prefer the way it is done in <code>bookdown</code> much better, particularly for the referencing.</p>
+<p>This simple LaTeX syntax</p>
+<pre><code>\begin{equation}
+H_2O + H_2O \rightleftharpoons OH^- + H_3O^+
+(\#eq:autoprotolysis)
+\end{equation}</code></pre>
+<p>yields</p>
+<span class="math display" id="eq:autoprotolysis">\[\begin{equation}
+H_2O + H_2O \rightleftharpoons OH^- + H_3O^+
+\tag{3.1}
+\end{equation}\]</span>
+<p>Notice that the number <a href="equations.html#eq:autoprotolysis">(3.1)</a> is automatically added as you put in the text <code>\@ref(eq:autoprotolysis)</code>.</p>
+<p>Of course, it is possible to write a little more complicated equations. The limit is LaTeX. I have not explored all what there is but here is an example that was useful for me:</p>
+<pre><code>\begin{equation}
+H_nA \rightleftharpoons H_{n-1}A^- + H^+ \hspace{0.6cm} K_{a1} = \frac{[H_{n-1}A^-][H^+]}{[H_nA]} \hspace{0.6cm} [H_{n-1}A^-] = [H_nA] \frac {K_{a1}}{[H^+]}\\
+H_{n-1}A^- \rightleftharpoons H_{n-2}A^{2-} + H^+ \hspace{0.6cm} K_{a2} = \frac{[H_{n-2}A^{2-}][H^+]}{[H_{n-1}A]} \hspace{0.6cm} [H_{n-2}A^-] = [H_nA] \frac {K_{a1}K_{a2}}{[H^+]^2}\\
+\\
+\vdots \hspace{6cm} \vdots \hspace{6cm} \vdots\\
+\\
+HA^{(n-1)-} \rightleftharpoons A^{n-} + H^+ \hspace{0.6cm} K_{an} = \frac{[A^{n-}][H^+]}{[HA^{(n-1)-}]} \hspace{0.6cm} [A^{n-}] = [H_nA] \frac {K_{a1}K_{a2} \ldots  K_{an}}{[H^+]^n}\\
 
-To force a line break, put _two_ blank spaces at the end of a line.</code></pre>
-<p><br/></p>
-</div>
-<div id="headers" class="section level3">
-<h3><span class="header-section-number">2.1.2</span> Headers</h3>
-<p>The character <code>#</code> at the beginning of a line means that the rest of the line is interpreted as a section header. The number of <code>#</code>s at the beginning of the line indicates the level of the section (1,2,3, etc.). For instance, <code>Components of R Markdown</code> above is preceded by a single <code>#</code>, because it is of level 1 but <code>Headers</code> at the start of this paragraph is preceded by <code>###</code> because it is of level 3. Up to six levels are understood by Markdown. Do not interrupt these headers by line-breaks. Make sure that in your .Rmd file, you leave a blank line before a header, otherwise, <code>pandoc</code> will not render it as a header.</p>
-<p><br/></p>
-</div>
-<div id="italics-and-bold" class="section level3">
-<h3><span class="header-section-number">2.1.3</span> Italics and bold</h3>
-<pre><code>*italics* and _italics_</code></pre>
-<p>renders <em>italics</em> and <em>italics</em></p>
-<pre><code>**bold** and __bold__</code></pre>
-<p>renders <strong>bold</strong> and <strong>bold</strong></p>
-<p><br/></p>
-</div>
-<div id="supbscripts-and-superscripts" class="section level3">
-<h3><span class="header-section-number">2.1.4</span> Supbscripts and superscripts</h3>
-<p>To write sub- and superscripts, like in NO<sub>3</sub><sup>-</sup> or PO<sub>4</sub><sup>3-</sup> write as</p>
-<pre><code>NO~3~^-^ or PO~4~^3-^</code></pre>
-<p>PO<sub>4</sub><sup>3-</sup> does not look as neat as <span class="math inline">\(PO_4^{3-}\)</span></p>
-<pre><code>PO~4~^3-^ does not look as neat as $PO_4^{3-}$</code></pre>
-<p>but looks more seamless in a normal text because the former does not appear as an <a href="equations.html#inline-equations">equation</a> while the other does.</p>
-<p><br/></p>
-</div>
-<div id="lists" class="section level3">
-<h3><span class="header-section-number">2.1.5</span> Lists</h3>
-<pre><code>* unordered list
-* item 2
-    + sub-item 1                #4 &lt;spaces&gt; before +
-    + sub-item 2                #4 &lt;spaces&gt; before +</code></pre>
-<ul>
-<li>unordered list</li>
-<li>item 2
-<ul>
-<li>sub-item 1</li>
-<li>sub-item 2</li>
-</ul></li>
-</ul>
-<pre><code>1. ordered list
-2. item 2
-    + sub-item 1                #4 &lt;spaces&gt; before +
-    + sub-item 2                #4 &lt;spaces&gt; before +</code></pre>
-<ol style="list-style-type: decimal">
-<li>ordered list</li>
-<li>item 2
-<ul>
-<li>sub-item 1</li>
-<li>sub-item 2</li>
-</ul></li>
-</ol>
-<p>In the ordered list, there is a subtlety unrevealed in the Rmardown documentation, which is that the numbering <em>always</em> increases, and that <em>only</em> the number value of the first item matters. So, one cannot have a list in a decreasing order (which is too bad because when one makes a list of his/her publications, it is nice to have a decreasing order…), and the only number that matters is the first one. So this code <br/></p>
-<pre><code>5. ordered list
-7. item 2
-2. item 2
-                                # blank line for list to take into effect
-    b. sub-item 1               #4 &lt;spaces&gt; before b
-    a. sub-item 2  </code></pre>
-<p><br/> renders this:</p>
-<ol start="5" style="list-style-type: decimal">
-<li>ordered list</li>
-<li>item 2</li>
-<li><p>item 2</p>
-<ol start="2" style="list-style-type: lower-alpha">
-<li>sub-item 1<br />
-</li>
-<li>sub-item 2</li>
-</ol></li>
-</ol>
-<p><br/></p>
-</div>
-<div id="quotations" class="section level3">
-<h3><span class="header-section-number">2.1.6</span> Quotations</h3>
-<blockquote>
-<p>R Markdown is, in particular, both “free as in beer” (you will never pay a dollar for software to use it) and “free as in speech” (the specification is completely open to all to inspect).</p>
-</blockquote>
-<p>Is a quotation from <a href="http://www.stat.cmu.edu/~cshalizi/rmarkdown/">Dr Shalizi</a> which code starts with a <code>&gt;</code></p>
-<pre><code>&gt; R Markdown is, in particular, both &quot;free as in beer&quot; etc.</code></pre>
-<p><br/></p>
-</div>
-<div id="computer-type" class="section level3">
-<h3><span class="header-section-number">2.1.7</span> Computer type</h3>
-<p>This is to differentiate regular text from <code>code text</code> so that both can be easily differentiated: <code>R</code> vs R.</p>
-<pre><code>This is to differentiate regular text from `code text` so that both can be easily differentiated: `R` vs R.</code></pre>
-<p>An entire paragraph of code which is rendered as a “code box” in html (but not in pdf) starts with three “back-ticks”, and end the same</p>
-<p><br/> <a id="link_ref"></a></p>
-</div>
-<div id="symbols-and-special-characters" class="section level3">
-<h3><span class="header-section-number">2.1.8</span> Symbols and Special characters</h3>
-<p>The principal keys, like the alphabet, are understood univocally across platforms such as Windows, Mac OS, or Linux. However, there are special characters such °, ² or µ that have different embedded codes across the different platforms. For example, if you and your co-worker work on the same document and one works using Windows and the other uses Mac, the actual symbol in the code text may not show the same one from one to the other plateform.</p>
-<p>For example, if I write in an R markdown document “10 m²” and I have added the ² symbol by typing on a PC “Alt+0178”, as this corresponds to the ascii code for ² in Windows, the same document open on a Mac will render “10 m?”, because it cannot interpret the embedded code for ²…</p>
-<p>Several consequences:</p>
-<ol style="list-style-type: decimal">
-<li><strong>NEVER</strong> use special characters in variable names in an <code>R</code> code,</li>
-<li>in an R markdown document, use the HTML Number or HTML name in the text</li>
-</ol>
-<p><a href="https://www.ascii.cl/htmlcodes.htm">HTML Number and Names</a> can be found on this <a href="https://www.ascii.cl/htmlcodes.htm">ascii page</a> or on this page for <a href="http://www.dionysia.org/html/entities/symbols.html">greek letter codes and some other symbols</a></p>
-<p>So to type T°C, m², µm, or pε you type like this</p>
-<pre><code>So to type T&amp;deg;C, m&amp;sup2;, &amp;micro;m, or p&amp;epsilon; you type like this</code></pre>
-<p>Do not forget to add the “;” !!! <br/><br/><br/></p>
+(\#eq:HnApoly)
+\end{equation}</code></pre>
+<p>yields</p>
+<span class="math display" id="eq:HnApoly">\[\begin{equation}
+H_nA \rightleftharpoons H_{n-1}A^- + H^+ \hspace{0.6cm} K_{a1} = \frac{[H_{n-1}A^-][H^+]}{[H_nA]} \hspace{0.6cm} [H_{n-1}A^-] = [H_nA] \frac {K_{a1}}{[H^+]}\\
+H_{n-1}A^- \rightleftharpoons H_{n-2}A^{2-} + H^+ \hspace{0.6cm} K_{a2} = \frac{[H_{n-2}A^{2-}][H^+]}{[H_{n-1}A]} \hspace{0.6cm} [H_{n-2}A^-] = [H_nA] \frac {K_{a1}K_{a2}}{[H^+]^2}\\
+\\
+\vdots \hspace{6cm} \vdots \hspace{6cm} \vdots\\
+\\
+HA^{(n-1)-} \rightleftharpoons A^{n-} + H^+ \hspace{0.6cm} K_{an} = \frac{[A^{n-}][H^+]}{[HA^{(n-1)-}]} \hspace{0.6cm} [A^{n-}] = [H_nA] \frac {K_{a1}K_{a2} \ldots  K_{an}}{[H^+]^n}\\
+
+\tag{3.2}
+\end{equation}\]</span>
+<p>Again, you see that the numbering of the equation is automatic!!</p>
 
 </div>
 </div>
@@ -283,8 +221,8 @@ To force a line break, put _two_ blank spaces at the end of a line.</code></pre>
           </div>
         </div>
       </div>
-<a href="index.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
-<a href="equations.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
+<a href="intro.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="code-chunks.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>
 <script src="libs/gitbook-2.6.7/js/app.min.js"></script>
@@ -314,7 +252,7 @@ gitbook.start({
 "size": 2
 },
 "edit": {
-"link": "https://github.com/rstudio/bookdown-demo/edit/master/01-introTextFeatures.Rmd",
+"link": "https://github.com/rstudio/bookdown-demo/edit/master/02-Equations-in-latex.Rmd",
 "text": "Edit"
 },
 "download": ["bookdown-demo.pdf", "bookdown-demo.epub"],
