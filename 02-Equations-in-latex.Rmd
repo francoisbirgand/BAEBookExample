@@ -1,12 +1,10 @@
-# Equations
-
-## Editing equations in R Markdown
+# Editing equations in R Markdown
 
 We do not write nearly as much math in our field than  our colleagues in statistics or math. But we do enough to have a bit of a tutorial.  I have borrowed this entire section from the [excellent tutorial from Dr Shalizi](http://www.stat.cmu.edu/~cshalizi/rmarkdown/#math-in-r-markdown) again. R Markdown gives you the syntax to render complex mathematical formulas and derivations, and have them displayed very nicely.  Like code, the math can either be inline or set off (displays).
 
 <br/>
 
-### Inline equations
+## Inline equations
 Inline math is marked off witha pair of dollar
 signs (`$`), as $\pi r^2$ or $e^{i\pi}$.
 
@@ -16,7 +14,7 @@ signs (`$`), as $\pi r^2$ or $e^{i\pi}$.
 ```
 <br/>
 
-### Set off equations
+## Set off equations
 In the [R markdown tutorial](https://francoisbirgand.github.io/tutorial-RMarkdown_instructions.html) I have other instructions about equations that are really related to R markdown. I now prefer the way it is done in `bookdown` much better, particularly for the referencing. 
 
 This simple LaTeX syntax 

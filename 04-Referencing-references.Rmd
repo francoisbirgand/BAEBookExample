@@ -6,18 +6,18 @@ The beauty of the system is that the referencing is all automatised.
 
 * So to reference an equation use `\@ref(eq:HnApoly)` to obtain equation \@ref(eq:HnApoly)
 * So to reference a figure use`\@ref(fig:molarfracPO4)` to obtain figure \@ref(fig:molarfracPO4)
-* So to reference an table use`\@ref(tab:ElecAllocTab)` to obtain figure \@ref(tab:ElecAllocTab)
+* So to reference an table use`\@ref(tab:ElecAllocTab)` to obtain table \@ref(tab:ElecAllocTab)
 
 
 ## Cited references
 
 I have created and maintained for over 15 years a database written in Microsoft Access of around 2000 articles, most of them photocopied and typed in the database by hand during and after my Ph.D. (yes, I should have a medal!...) but I have to admit that this system is past its time...  I have now switched to Paperpile.  There are many other referencing software out there now  ([a list and comparison can be found here](https://en.wikipedia.org/wiki/Comparison_of_reference_management_software)).  The beauty of them is that they will all export in recognized formats and this is what we care about here. So no more copy/paste of references from some pdf.  We are going into *reproducible research*. This means that all the articles you want to work with will be entered in the reference database of your choice. Make sure you start one ASAP!
 
-In the YAML header, you can now see `bibliography: RMD_course_bibtex.bibtex`. This means that there is a file named `RMD_course_bibtex.bibtex` that is located in the same directory as the .Rmd file, which when we 'knit', [Pandoc](https://pandoc.org/MANUAL.html) will look for. You can access this `.bibtex` file in the GitHub directory. There is actually a possibility to add within the `.Rmd` document itself, the text needed for Pandoc to read the references, but unless you only have very few references, this can become very messy quickly. See the [RStudio Bibliographies documentation](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#bibliographies) for more details.
+In the YAML header, you can now see `bibliography: [book.bib, packages.bib]`. This means that there are files named `book.bib` and `packages.bib` that are located in the same directory as the all the .Rmd files, which when we 'knit', [Pandoc](https://pandoc.org/MANUAL.html) will look for. You can access these `.bib` file in the GitHub directory. There is actually a possibility to add within the `.Rmd` document itself, the text needed for Pandoc to read the references, but unless you only have very few references, this can become very messy quickly. See the [RStudio Bibliographies documentation](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#bibliographies) for more details.
 
-In short, in this file, there is a list of articles which information is coded according to the format chosen. By the way, a lot of the details for the bibliography are available on the [RStudio Bibliographies documentation](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#bibliographies). R Markdown will recognize up to 10 different formats.  The one Paperpile exports is `.bibtex`, so this is the one I have have added in the YAML header. The filename extension will determine the *rendering* process, so make sure you have the right extension as well.
+In short, in this file, there is a list of articles which information is coded according to the format chosen. By the way, a lot of the details for the bibliography are available on the [RStudio Bibliographies documentation](http://rmarkdown.rstudio.com/authoring_bibliographies_and_citations.html#bibliographies). R Markdown will recognize up to 10 different formats.  The one Paperpile exports is `.bibtex`, so this is the one I have usually add in the YAML header. The filename extension will determine the *rendering* process, so make sure you have the right extension as well.
 
-So, in the `.bibtex` file I have, the first article appears as
+So, in the `.bib` file I have, the first article appears as
 
 ```
 @ARTICLE{Kuhne2009-tn,
@@ -59,12 +59,12 @@ The reference list of the citations will appear right after you place
 ```
 # References
 ```
-at the bottom of your Rmd docucment.  When rendering your document, the list will appear automatically afterwards, and if you have in text notes, these will appear underneath.
+at the bottom of your Rmd docucment, if it a single Rmd document, or as a separate chapter for a book.  When rendering your document, the list will appear automatically afterwards, and if you have in text notes, these will appear underneath.
 
 <br/>
 
 ### Link to citations
-One very nice feature is to create hyperlinks from the in-text citations to the citations in the reference section. For this, just add `link-citations: true` in the YAML header.
+In a single Rmd document (not a book) One very nice feature is to create hyperlinks from the in-text citations to the citations in the reference section. For this, just add `link-citations: true` in the YAML header.
 
 <br/>
 
