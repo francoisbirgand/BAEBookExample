@@ -33,6 +33,8 @@ So, in the `.bib` file I have, the first article appears as
 }
 ```
 
+here is another reference [@Maxwell2018-ht] or this website [@Wikipedia_contributors2018-ia]
+
 The first item after "ARTICLE{" is the unique identifier for the article. The identifier of this article is `Kuhne2009-tn`. When one wants to cite this article, one will say something like "reproducible research has been suggested to become the norm [@Kuhne2009-tn]". And you would code like 
 
 ```

@@ -59,7 +59,6 @@ H_{n-1}A^- \rightleftharpoons H_{n-2}A^{2-} + H^+ \hspace{0.6cm} K_{a2} = \frac{
 \vdots \hspace{6cm} \vdots \hspace{6cm} \vdots\\
 \\
 HA^{(n-1)-} \rightleftharpoons A^{n-} + H^+ \hspace{0.6cm} K_{an} = \frac{[A^{n-}][H^+]}{[HA^{(n-1)-}]} \hspace{0.6cm} [A^{n-}] = [H_nA] \frac {K_{a1}K_{a2} \ldots  K_{an}}{[H^+]^n}\\
-
 (\#eq:HnApoly)
 \end{equation}
 
